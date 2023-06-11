@@ -18,7 +18,7 @@ def create_model():
 
 def load_model_weights():
     model = create_model()
-    model.load_weights('D:\Bangkit 2023\Capstone\model_mbti.h5')
+    model.load_weights('https://storage.googleapis.com/capstone-mbtiedu.appspot.com/458991082660430273_model_mbti/model_mbti.h5')
     return model
 
 model = load_model_weights()
