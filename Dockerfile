@@ -8,4 +8,4 @@ COPY . /app
 
 WORKDIR /app
 
-CMD python http://main.py
+CMD python main.py
