@@ -124,5 +124,5 @@ def predict_mbti():
 
     return jsonify(response)
 
-if __name__ == '__main__':
-    app.run()
+if _name_ == '_main_':
+    http://app.run(host='0.0.0.0', port=8080)
