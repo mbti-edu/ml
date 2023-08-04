@@ -20,8 +20,9 @@ def create_model():
 @app.route('/predict', methods=['POST'])
 def predict_mbti():
     # Mendapatkan input dari permintaan POST
-    input_data = request.json['input_data']
-
+    request_data = request.json['data']
+    
+    print(request_data)
     # Pertanyaan untuk setiap dimensi
     questions = [
         "Apakah Anda lebih suka belajar melalui interaksi dengan orang lain? (Y/T)",
@@ -64,13 +65,13 @@ def predict_mbti():
 
     # Ajukan pertanyaan dan update skor
     for i in range(len(questions)):
-        answer = input_data[i].upper()
+        answer = request_data[i].upper()
         if answer == 'Y':
             scores['E'] += 1
             scores['S'] += 1
             scores['T'] += 1
             scores['J'] += 1
-        elif answer == 'T':
+        elif answer == 'N': # -b DIGANTI KE N, AWALNYA T
             scores['I'] += 1
             scores['N'] += 1
             scores['F'] += 1
@@ -109,7 +110,7 @@ def predict_mbti():
 
     # Load model
     model = create_model()
-    model.load_weights('/content/model_mbti.h5')
+    model.load_weights('content/model_mbti.h5')
 
     # Prediksi tipe MBTI
     prediction = model.predict([input_data])
@@ -124,5 +125,5 @@ def predict_mbti():
 
     return jsonify(response)
 
-if _name_ == '_main_':
-    app.run(host='0.0.0.0', port=8080)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)
